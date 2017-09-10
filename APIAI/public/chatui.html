@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>PS Bot</title>
+	<!-- load css library -->
+    <link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/style.css">
+  </head>
+
+  <body style="overflow:hidden">
+    <div class="wrapper">
+    <div class="container" style="top:45%">
+		<!-- left sidebar -->
+	   <div class="left">
+	   <ul class="people">
+				<li class="logo">
+				<img src="IMG-20170910-WA0003.jpg" alt="" style="width:35%;height:35%"/>
+				</li>
+			</ul>
+            <div class="top">
+                <input type="text" placeholder="Search"/>
+                <a href="javascript:;" class="search"></a>
+            </div>
+            <ul class="people">
+			  <li class="person" data-chat="person2">
+                  <img src="person1_480.png" alt="" style="width:15%;height:15%" />
+                  <span class="name">Bot</span>
+              </li>
+            </ul>
+			
+        </div>
+		
+		<!-- right chat window -->
+        <div class="right">
+            <div class="top"><center><span><span class="name">PS Demo Bot</span></span></center></div>
+            <div class="chat" data-chat="person2">
+				<!--<div id="hell1" class="bubble you"></div>
+				<div id="hell" class="bubble me"></div> -->
+            </div>
+			
+            <div class="write">
+
+			<form>
+
+			<input id="m" autocomplete="off" name="SEND" />
+                <a href="javascript:;" class="write-link send" id="send"></a>
+				</br><br>
+
+				</form>
+
+		</div>
+		
+        </div>
+		     <div id='gt'></div>
+
+		<!-- end of right window -->
+    </div>
+</div>
+    <!-- load js library -->
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js'>
+	  </script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="js/index.js"></script>
+	
+	<script>
+
+      var socket = io();
+      $('form').submit(function(){
+
+			var inpu=[];
+inpu=$('#m').val();
+
+	$('.chat').append('<div class="bubble me">'+$('#m').val()+'</div>');
+        socket.emit('chat message', inpu);
+		$('#m').val('');
+        return false;
+
+		});
+	  
+  socket.on('chat',function(msg1){
+$('#m').val('');
+  $('.chat').append('<div class="bubble you">'+msg1+'</div>');              
+	return false;
+	})
+	
+	
+	function Rfunction(obj){
+						socket.emit('chat message', obj);
+		document.getElementById('Device Lost').style.display = "none";
+		
+		document.getElementById('Order Device').style.display = "none";
+		
+		document.getElementById('Swap Device').style.display = "none";
+		
+		document.getElementById('Report Device').style.display = "none";
+		}
+	
+		
+	function Rfunction1(obj){
+	alert(obj);
+							socket.emit('chat message', obj);	
+
+		document.getElementById('iPhone').style.display = "none";
+		
+		document.getElementById('Surface').style.display = "none";
+		
+		document.getElementById('Apple MacBook').style.display = "none";
+				}
+		
+    </script>
+	<script>
+	
+	function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
+	socket.on('cf',function(response){
+	//alert("hello");
+	
+	$('.chat').append('<div class="bubble you">'+response.message+'</div>'); 
+	
+	
+	});
+	
+	</script>
+	
+  </body>
+</html>
