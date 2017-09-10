@@ -1,4 +1,4 @@
-# publicservices
+# Public Services Bot
 This repository is for "Citizens Centric Services Hackathon" Initiative which was conducted between September 8th to September 10th, 2017
 
 ## Technology Overview
